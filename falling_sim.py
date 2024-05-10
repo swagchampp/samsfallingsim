@@ -5,6 +5,7 @@ import moderngl_window as mglw
 from moderngl_window.integrations.imgui import ModernglWindowRenderer
 from moderngl_window.capture.ffmpeg import FFmpegCapture
 import numpy as np
+import pathlib
 
 import imgui
 
@@ -172,7 +173,7 @@ class Object():
         
     def prepare_to_render(self,window : mglw.WindowConfig, path):
         self.obj = window.load_scene(path)
-        self.texture = window.load_texture_2d(sys.path[0]+'/data/bigman_texture.png')
+        self.texture = window.load_texture_2d(pathlib.Path.cwd() / 'data' / 'bigman_texture.png')
         
         self.prog = window.ctx.program(
             vertex_shader='''
@@ -421,9 +422,9 @@ class Simulator(mglw.WindowConfig):
         for cam_dict in self.config["cameras"]:
             self.cameras.append(Camera(self.aspect_ratio, position = Vector3(cam_dict["position"]),orientation=Vector3(cam_dict["position"])))
         self._active_camera_idx = 0
-
-        self.skybox = Skybox(self,sys.path[0]+'/data/space_skybox_texture.jpg')
-        self.obj1 = Object(self,sys.path[0]+'/data/bigman.obj',position = np.array([0.0,10.0,0.0]))
+        
+        self.skybox = Skybox(self,pathlib.Path.cwd() / 'data' / 'space_skybox_texture.jpg')
+        self.obj1 = Object(self,pathlib.Path.cwd() / 'data' / 'bigman.obj',position = np.array([0.0,10.0,0.0]))
         
         self.capture_contexts = [self.ctx for _ in range(len(self.cameras))]
         self.capture_fbos = [ctx.framebuffer([ctx.texture((1280, 720), 4, dtype='f4')]) for ctx in self.capture_contexts]

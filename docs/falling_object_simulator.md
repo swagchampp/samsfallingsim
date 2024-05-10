@@ -147,7 +147,7 @@ Now that we have strange teleportation, we may as well abandon reasonable physic
 
 5/10/24:
 
-Update: When trying to make sure that the code was portable, I noticed that loading it on a windows or even another linux device failed miserably (black screen). At first I thought it was the path, but actually it was the videocapture context. We were creating a separate context for the video capture, but actually we just want to create a VBO and VAO and store the contents of the VBO to the video file. This is  a quick switch and is even easier, however we will also want to fix the pathing (I prefer pathlib)
+Update: When trying to make sure that the code was portable, I noticed that loading it on a windows or even another linux device failed miserably (black screen). At first I thought it was the path, but actually it was the videocapture context. We were creating a separate context for the video capture, but actually we just want to create a VBO and VAO and store the contents of the VBO to the video file. This is  a quick switch and is even easier, however we will also want to fix the pathing (I prefer pathlib). Doing this, it works on Windows, as well as OpenSUSE linux, so now the whole world can download our nonsense.
 
 ## Project Summary
 ### Features
