@@ -1,0 +1,5 @@
+pyrr==0.10.3
+moderngl==5.10.0
+moderngl_window==2.4.6
+imgui==2.0.0
+pywavefront==1.3.3
