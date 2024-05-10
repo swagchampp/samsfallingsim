@@ -425,7 +425,7 @@ class Simulator(mglw.WindowConfig):
         self.skybox = Skybox(self,sys.path[0]+'/data/space_skybox_texture.jpg')
         self.obj1 = Object(self,sys.path[0]+'/data/bigman.obj',position = np.array([0.0,10.0,0.0]))
         
-        self.capture_contexts = [moderngl.create_standalone_context() for _ in range(len(self.cameras))]
+        self.capture_contexts = [self.ctx for _ in range(len(self.cameras))]
         self.capture_fbos = [ctx.framebuffer([ctx.texture((1280, 720), 4, dtype='f4')]) for ctx in self.capture_contexts]
 
         self.videocaptures = [mglw.capture.FFmpegCapture(source=self.capture_fbos[i]) for i in range(len(self.cameras))]
@@ -561,5 +561,5 @@ class Simulator(mglw.WindowConfig):
 
     def unicode_char_entered(self, char):
         self.imgui.unicode_char_entered(char)
-if __name__ == '__main__':
-    Simulator.run()
+
+Simulator.run()

@@ -145,6 +145,10 @@ His teleportation needs to be not too frequent, so we want to bind it to the tim
 
 Now that we have strange teleportation, we may as well abandon reasonable physics like bouncing, so we have him teleport back to the other side whenever he hits it, enabling him to theoretically accellerate to the speed of light. Of course as usual, all of this is optional and configurable through imgui. 
 
+5/10/24:
+
+Update: When trying to make sure that the code was portable, I noticed that loading it on a windows or even another linux device failed miserably (black screen). At first I thought it was the path, but actually it was the videocapture context. We were creating a separate context for the video capture, but actually we just want to create a VBO and VAO and store the contents of the VBO to the video file. This is  a quick switch and is even easier, however we will also want to fix the pathing (I prefer pathlib)
+
 ## Project Summary
 ### Features
 * World Configuration
